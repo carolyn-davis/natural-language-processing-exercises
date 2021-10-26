@@ -123,6 +123,37 @@ is_phone_number(string)
 # =============================================================================
 
 
+import pandas as pd
+
+from datetime import datetime
+sample_dates = pd.Series(['02/04/19', '02/05/19', '02/06/19', '02/07/19', '02/08/19', '02/09/19', '02/10/19'])
+sample_dates = [str (i) for i in sample_dates]
+sample_dates.describe()
+
+sample_dates= pd.to_datetime(sample_dates[1:]).strftime('%Y-%m-%d')
+print(sample_dates)
+
+
+
+
+# =============================================================================
+# 5.) Write a regex to extract the various parts of these logfile lines:
+# =============================================================================
+# =============================================================================
+# GET /api/v1/sales?page=86 [16/Apr/2019:193452+0000] HTTP/1.1 {200} 510348 "python-requests/2.21.0" 97.105.19.58
+# POST /users_accounts/file-upload [16/Apr/2019:193452+0000] HTTP/1.1 {201} 42 "User-Agent: Mozilla/5.0 (X11; Fedora; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36" 97.105.19.58
+# GET /api/v1/items?page=3 [16/Apr/2019:193453+0000] HTTP/1.1 {429} 3561 "python-requests/2.21.0" 97.105.19.58
+# 
+# =============================================================================
+
+
+
+
+
+
+# regexp = r'(\d{4})-(\d{2})-(\d{2})'
+# sample_dates = pd.Series(['02/04/19', '02/05/19', '02/06/19', '02/07/19', '02/08/19', '02/09/19', '02/10/19'])
+# sample_dates.str.replace(regexp, r'\2/\3/\1')
 
 
 # re.sub(r'(\d{4})(\d{2})(\d{2})', r'\2/\3/\1', datestring)
@@ -139,18 +170,33 @@ is_phone_number(string)
 # datestring = input('Enter a string: ')
 
 # standard_date(datestring)
-def change_date_format(dt):
-        return re.sub(r'(\d{4})-(\d{1,2})-(\d{1,2})', '\\2-\\3-\\1', dt)
+
+# regexp = r'(\d{1,2})-(\d{1,2})-(\d{4})'
+
+# sample_dates.str.replace(regexp, r'\3/\2/\1')
+# print(sample_dates)
+
+# def change_date_format(dt):
+#         return re.sub(r'(\d{1,2})-(\d{1,2})-(\d{4})', '\\4-\\2-\\1', dt)
+# # dt1 = "2026-01-02"
+# print("Original date in YYY-MM-DD Format: ",sample_dates)
+# print("New date in DD-MM-YYYY Format: ",change_date_format(sample_dates))
+
+# sample_dates = list(sample_dates)
+# sample_dates = sample_dates[1:]
+# test = datetime.strptime(sample_dates, "%m/%d/%Y").strftime('%Y-%m-%d')
 
 
-dt1 = "2026-01-02"
-print("Original date in YYY-MM-DD Format: ",dt1)
-print("New date in DD-MM-YYYY Format: ",change_date_format(dt1))
+# sample_dates = pd.Series(sample_dates)
 
 
 
 
+# print(sample_dates)
 
+
+
+# sample_dates.replace(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, "$3/\$2\/-$1")
 
 
 # sentence = "My name is carolyn."
